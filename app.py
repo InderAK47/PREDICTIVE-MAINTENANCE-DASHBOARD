@@ -8,7 +8,7 @@ page_title="Smart Predictive Maintenance",
 layout="wide"
 )
 
-st.title("AI Based Bearing Health Dashboard")
+st.title("Inderpreet Dashboard")
 
 df=pd.read_csv("machine_data.csv")
 
