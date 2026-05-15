@@ -10,7 +10,7 @@ layout="wide"
 
 st.title("Inderpreet Dashboard")
 
-df=pd.read_xlsx("WTP_Predictive_Maintenance_Dummy_Data.xlsx")
+pd.read_xlsx("WTP_Predictive_Maintenance_Dummy_Data.xlsx")
 
 
 # TOP SUMMARY
@@ -111,7 +111,7 @@ health=selected["Health"].values[0]
 
 
 st.subheader(
-"AI Recommendation"
+"Recommendation"
 )
 
 if health<50:
