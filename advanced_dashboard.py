@@ -87,7 +87,7 @@ st.subheader('Temperature Trend')
 fig1=px.line(
     selected,
     x='Date',
-    y='Temperature'
+    y='Temperature '
 )
 
 st.plotly_chart(
