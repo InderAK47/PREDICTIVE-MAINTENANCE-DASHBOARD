@@ -10,7 +10,7 @@ layout="wide"
 
 st.title("Inderpreet Dashboard")
 
-pd.read_xlsx("WTP_Predictive_Maintenance_Dummy_Data.xlsx")
+df=pd.read_xlsx("WTP_Predictive_Maintenance_Dummy_Data.xlsx")
 
 
 # TOP SUMMARY
