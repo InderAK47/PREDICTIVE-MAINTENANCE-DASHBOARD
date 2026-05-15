@@ -12,48 +12,64 @@ st.title("AI Based Bearing Health Dashboard")
 
 df=pd.read_csv("machine_data.csv")
 
-col1,col2,col3=st.columns(3)
 
-with col1:
+# TOP SUMMARY
+
+healthy=len(df[df["Health"]>=70])
+
+warning=len(
+df[(df["Health"]>=50) &
+(df["Health"]<70)]
+)
+
+critical=len(
+df[df["Health"]<50]
+)
+
+a,b,c=st.columns(3)
+
+with a:
     st.metric(
-    "Machines Monitored",
-    len(df)
+    "Healthy Machines",
+    healthy
     )
 
-with col2:
-    critical=len(df[df["Health"]<50])
-
+with b:
     st.metric(
-    "Critical Machines",
+    "Warning",
+    warning
+    )
+
+with c:
+    st.metric(
+    "Critical",
     critical
     )
 
-with col3:
-    avg=df["Health"].mean()
-
-    st.metric(
-    "Avg Health",
-    str(round(avg,1))+"%"
-    )
 
 st.subheader("Machine Status Table")
 
 st.dataframe(df)
+
 
 machine=st.selectbox(
 "Select Machine",
 df["Machine"]
 )
 
-selected=df[df["Machine"]==machine]
+selected=df[
+df["Machine"]==machine
+]
 
-st.subheader("Machine Details")
+st.subheader(
+"Machine Details"
+)
 
 c1,c2,c3,c4=st.columns(4)
 
 with c1:
     st.metric(
-    "Temp",
+    "Temperature",
     str(selected["Temperature"].values[0])+" °C"
     )
 
@@ -78,7 +94,11 @@ with c4:
 fig=px.bar(
 selected,
 x="Machine",
-y=["Temperature","Vibration","Health"]
+y=[
+"Temperature",
+"Vibration",
+"Health"
+]
 )
 
 st.plotly_chart(
@@ -86,19 +106,29 @@ fig,
 use_container_width=True
 )
 
+
 health=selected["Health"].values[0]
 
+
+st.subheader(
+"AI Recommendation"
+)
+
 if health<50:
+
     st.error(
-    "CRITICAL: Maintenance immediately required"
+    "Predicted bearing failure risk high. Schedule shutdown immediately."
     )
 
 elif health<70:
+
     st.warning(
-    "Attention Required"
+    "Lubrication and inspection recommended within 5 days."
     )
 
 else:
+
     st.success(
-    "Machine Healthy"
+    "Machine operating normally."
     )
+
