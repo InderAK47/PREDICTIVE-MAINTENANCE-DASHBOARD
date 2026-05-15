@@ -1,0 +1,5 @@
+Machine,Temperature,Vibration,Health,Remaining_Days
+Pump P302,58,2.4,92,30
+Motor M101,72,4.8,65,15
+Conveyor C401,83,7.1,38,5
+Fan F204,62,3.5,80,22
