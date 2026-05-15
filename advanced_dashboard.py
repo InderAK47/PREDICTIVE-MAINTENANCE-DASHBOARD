@@ -67,7 +67,7 @@ c1,c2,c3=st.columns(3)
 with c1:
     st.metric(
         'Temperature',
-        str(latest['Temperature(°C)'])+' °C'
+        str(latest['Temperature'])+' °C'
     )
 
 with c2:
@@ -87,7 +87,7 @@ st.subheader('Temperature Trend')
 fig1=px.line(
     selected,
     x='Date',
-    y='Temperature(°C)'
+    y='Temperature'
 )
 
 st.plotly_chart(
