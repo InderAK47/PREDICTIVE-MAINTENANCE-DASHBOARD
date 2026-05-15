@@ -15,7 +15,7 @@ df=pd.read_excel("WTP_Predictive_Maintenance_Dummy_Data.xlsx")
 
 # TOP SUMMARY
 
-healthy=len(df[df["Health"]>=70])
+ healthy=len(df[df["Health"]>=70])
 
 warning=len(
 df[(df["Health"]>=50) &
