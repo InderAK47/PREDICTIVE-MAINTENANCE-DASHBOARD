@@ -97,7 +97,7 @@ else:
 # Current values
 
 temp = float(
-    latest["Temperature"]
+    latest["Temperature "]
 )
 
 vib = float(
@@ -129,7 +129,7 @@ c1,c2,c3=st.columns(3)
 with c1:
     st.metric(
         'Temperature',
-        str(latest['Temperature'])
+        str(latest['Temperature '])
     )
 
 with c2:
