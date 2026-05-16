@@ -13,24 +13,20 @@ st.subheader('AI-Based Bearing Health Monitoring System')
 
 # Read Excel file
 df = pd.read_excel(
-    'WTP_Predictive_Maintenance_Dummy_Data.xlsx'
+    "WTP_Predictive_Maintenance_Dummy_Data.xlsx"
 )
 
 limits = pd.read_excel(
     "equipments_limits.xlsx"
 )
 
-# Remove accidental spaces
+# Clean equipment names
+df["Equipment"] = df["Equipment"].astype(str).str.strip()
+limits["Equipment"] = limits["Equipment"].astype(str).str.strip()
 
-df["Equipment"] =
-df["Equipment"] .astype(str).str.strip()
-
-limits["Equipment"] = 
-limits["Equipment"].astype(str).str.strip(
-)
 df = df.dropna()
 
-df['Date'] = pd.to_datetime(df['Date'])
+df["Date"] = pd.to_datetime(df["Date"])
 
 healthy = len(df[df['Health (%)'] >= 70])
 
