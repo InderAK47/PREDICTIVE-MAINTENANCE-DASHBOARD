@@ -62,6 +62,15 @@ equipment=st.selectbox(
     sorted(df['Equipment'].unique())
 )
 
+selected = df[
+df["Equipment"] == eduipment
+]
+selected = selected.sort_values(
+    "Date"
+)
+
+latest = selected.iloc[-1]
+
 # Get equipment limits
 
 limit = limits[
