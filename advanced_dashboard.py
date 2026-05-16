@@ -139,3 +139,56 @@ else:
     st.success(
     'Equipment operating normally.'
     )
+st.subheader("Add New Equipment Data")
+
+with st.form("data_entry"):
+
+    date = st.text_input(
+        "Date"
+    )
+
+    equipment = st.text_input(
+        "Equipment"
+    )
+
+    temp = st.number_input(
+        "Temperature (°C)"
+    )
+
+    vibration = st.number_input(
+        "Vibration (mm/s)"
+    )
+
+    health = st.number_input(
+        "Health (%)"
+    )
+
+    submit = st.form_submit_button(
+        "Submit"
+    )
+
+if submit:
+
+    new_row = pd.DataFrame({
+
+    "Date":[date],
+    "Equipment":[equipment],
+    "Temperature(°C)":[temp],
+    "Vibration (mm/s)":[vibration],
+    "Health (%)":[health]
+
+    })
+
+    df = pd.concat(
+        [df,new_row],
+        ignore_index=True
+    )
+
+    df.to_excel(
+        "WTP_Predictive_Maintenance_Dummy_Data.xlsx",
+        index=False
+    )
+
+    st.success(
+        "Data Added Successfully"
+    )
