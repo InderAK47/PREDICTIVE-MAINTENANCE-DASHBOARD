@@ -57,21 +57,22 @@ with d:
 
 st.divider()
 
-equipment=st.selectbox(
-    'Select Equipment',
-    sorted(df['Equipment'].unique())
+equipment = st.selectbox(
+    "Select Equipment",
+    sorted(df["Equipment"].unique())
 )
 
 selected = df[
-df["Equipment"] == equipment
+    df["Equipment"] == equipment
 ]
+
 selected = selected.sort_values(
     "Date"
 )
 
 latest = selected.iloc[-1]
 
-# Get equipment limits
+# Get limits
 
 limit = limits[
     limits["Equipment"] == equipment
@@ -89,16 +90,22 @@ if len(limit) > 0:
 
 else:
 
-    st.warning(
-        "Equipment limits not found. Using default values."
-    )
-
     max_temp = 80
-
     max_vibration = 5
-    temp = latest["Temperature(°C)"]
 
-vib = latest["Vibration (mm/s)"]
+
+# Current values
+
+temp = float(
+    latest["Temperature(°C)"]
+)
+
+vib = float(
+    latest["Vibration (mm/s)"]
+)
+
+
+# Health calculation
 
 temp_score = 100 - (
     (temp/max_temp)*50
@@ -116,57 +123,6 @@ health=max(
     0,
     min(100,health)
 )
-
-latest=selected.iloc[-1]
-# Sort by date
-
-selected = selected.sort_values(
-    "Date"
-)
-
-st.subheader(
-"Predictive Analysis"
-)
-
-# Only run if enough records exist
-
-if len(selected) >= 5:
-
-    latest_vib = selected[
-    "Vibration (mm/s)"
-    ].iloc[-1]
-
-    old_vib = selected[
-    "Vibration (mm/s)"
-    ].iloc[-5]
-
-    increase = latest_vib-old_vib
-
-
-    if increase > 2:
-
-        st.error(
-        "Rapid vibration increase detected. Possible bearing failure risk within 7–10 days."
-        )
-
-    elif increase > 1:
-
-        st.warning(
-        "Abnormal vibration trend detected. Inspection recommended."
-        )
-
-    else:
-
-        st.success(
-        "Vibration trend stable."
-        )
-
-else:
-
-    st.info(
-    "Not enough historical data for prediction."
-    )
-st.subheader('Equipment Details')
 
 c1,c2,c3=st.columns(3)
 
