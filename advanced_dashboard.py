@@ -20,6 +20,12 @@ limits = pd.read_excel(
     "equipments_limits.xlsx"
 )
 
+# Remove accidental spaces
+df["Equipment"] =
+df["Equipment"] .astype(str).str.strip()
+limits["Equipment"] =
+limits["Equipment"].astype(str).str.strip(
+)
 df = df.dropna()
 
 df['Date'] = pd.to_datetime(df['Date'])
@@ -59,19 +65,21 @@ equipment=st.selectbox(
 )
 
 selected=df[
-    df['Equipment']==equipment
+    df['Equipment'] == equipment
 ]
-limit=limits[
-limits["Equipment"]=equipment
-]
-
-max_temp=limit[
-"MaxTemp"
-].iloc[0]
-
-max_vibration=limit[
-"MaxVibration"
-].iloc[0]
+if len(limit) > 0:
+    max_temp = float(
+        limit["MaxTemp"].values[0]
+    )
+    max_vibration = float(
+        limit["MaxVibration"].value[0]
+    )
+else:
+    st.warning(
+        "Equipment limit not found using default values."
+    )
+    max_temp = 80
+    max_vibration = 5
 
 latest=selected.iloc[-1]
 # Sort by date
