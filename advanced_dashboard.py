@@ -97,11 +97,11 @@ else:
 # Current values
 
 temp = float(
-    latest["Temperature(°C)"]
+    latest["Temperature"]
 )
 
 vib = float(
-    latest["Vibration (mm/s)"]
+    latest["Vibration"]
 )
 
 
