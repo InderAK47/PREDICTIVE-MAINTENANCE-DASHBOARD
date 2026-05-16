@@ -16,6 +16,10 @@ df = pd.read_excel(
     'WTP_Predictive_Maintenance_Dummy_Data.xlsx'
 )
 
+limits = pd.read_excel(
+    "equipments_limits.xlsx"
+)
+
 df = df.dropna()
 
 df['Date'] = pd.to_datetime(df['Date'])
@@ -57,6 +61,17 @@ equipment=st.selectbox(
 selected=df[
     df['Equipment']==equipment
 ]
+limit=limits[
+limits["Equipment"]==equipment
+]
+
+max_temp=limit[
+"MaxTemp"
+].iloc[0]
+
+max_vibration=limit[
+"MaxVibration"
+].iloc[0]
 
 latest=selected.iloc[-1]
 # Sort by date
