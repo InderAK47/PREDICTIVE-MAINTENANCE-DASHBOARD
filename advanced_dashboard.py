@@ -64,10 +64,6 @@ equipment=st.selectbox(
 
 # Get equipment limits
 
-df.columns = df.columns.str.strip()
-limits.columns = 
-limits.columns.str.strip()
-
 limit = limits[
     limits["Equipment"] == equipment
 ]
