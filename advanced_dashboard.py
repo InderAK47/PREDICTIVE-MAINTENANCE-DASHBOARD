@@ -62,7 +62,7 @@ selected=df[
     df['Equipment']==equipment
 ]
 limit=limits[
-limits["Equipment"]==equipment
+limits["Equipment"]=equipment
 ]
 
 max_temp=limit[
