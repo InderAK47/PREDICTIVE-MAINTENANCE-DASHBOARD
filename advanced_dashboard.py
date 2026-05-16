@@ -63,7 +63,7 @@ equipment=st.selectbox(
 )
 
 selected = df[
-df["Equipment"] == eduipment
+df["Equipment"] == equipment
 ]
 selected = selected.sort_values(
     "Date"
