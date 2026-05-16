@@ -70,7 +70,7 @@ selected = selected.sort_values(
     "Date"
 )
 
-latest = selected.iloc[-1]
+latest =  selected.iloc[-1] 
 
 # Get limits
 
