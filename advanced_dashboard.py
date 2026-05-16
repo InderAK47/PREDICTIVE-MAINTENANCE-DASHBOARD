@@ -139,43 +139,62 @@ else:
     st.success(
     'Equipment operating normally.'
     )
-st.subheader("Add New Equipment Data")
+st.divider()
 
-with st.form("data_entry"):
+st.subheader(
+"Add New Maintenance Data"
+)
 
-    date = st.text_input(
-        "Date"
+with st.form("entry_form"):
+
+    date = st.date_input(
+        "Select Date"
     )
 
-    equipment = st.text_input(
-        "Equipment"
+    equipment = st.selectbox(
+        "Select Equipment",
+        sorted(
+            df["Equipment"].unique()
+        )
     )
 
     temp = st.number_input(
-        "Temperature (°C)"
+        "Temperature (°C)",
+        min_value=0.0,
+        step=0.1
     )
 
     vibration = st.number_input(
-        "Vibration (mm/s)"
+        "Vibration (mm/s)",
+        min_value=0.0,
+        step=0.1
     )
 
-    health = st.number_input(
-        "Health (%)"
+    health = st.slider(
+        "Health (%)",
+        0,
+        100,
+        80
     )
 
     submit = st.form_submit_button(
-        "Submit"
+        "Submit Data"
     )
+
 
 if submit:
 
     new_row = pd.DataFrame({
 
-    "Date":[date],
-    "Equipment":[equipment],
-    "Temperature(°C)":[temp],
-    "Vibration (mm/s)":[vibration],
-    "Health (%)":[health]
+        "Date":[date],
+
+        "Equipment":[equipment],
+
+        "Temperature(°C)":[temp],
+
+        "Vibration (mm/s)":[vibration],
+
+        "Health (%)":[health]
 
     })
 
@@ -190,5 +209,5 @@ if submit:
     )
 
     st.success(
-        "Data Added Successfully"
+    "New data added successfully"
     )
