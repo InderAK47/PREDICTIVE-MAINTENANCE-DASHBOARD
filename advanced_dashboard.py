@@ -64,22 +64,30 @@ equipment=st.selectbox(
     sorted(df['Equipment'].unique())
 )
 
+# Get equipment limits
+
 limit = limits[
-limits["Equipment"] == equipment
+    limits["Equipment"] == equipment
 ]
 
 if len(limit) > 0:
+
     max_temp = float(
         limit["MaxTemp"].values[0]
     )
+
     max_vibration = float(
-        limit["MaxVibration"].value[0]
+        limit["MaxVibration"].values[0]
     )
+
 else:
+
     st.warning(
-        "Equipment limit not found using default values."
+        "Equipment limits not found. Using default values."
     )
+
     max_temp = 80
+
     max_vibration = 5
 
 latest=selected.iloc[-1]
