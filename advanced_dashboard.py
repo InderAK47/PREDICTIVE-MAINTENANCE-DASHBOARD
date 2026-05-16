@@ -101,7 +101,7 @@ temp = float(
 )
 
 vib = float(
-    latest["Vibration"]
+    latest["Vibration (mm/s)"]
 )
 
 
