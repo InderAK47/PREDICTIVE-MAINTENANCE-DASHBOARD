@@ -59,7 +59,54 @@ selected=df[
 ]
 
 latest=selected.iloc[-1]
+# Sort by date
 
+selected = selected.sort_values(
+    "Date"
+)
+
+st.subheader(
+"Predictive Analysis"
+)
+
+# Only run if enough records exist
+
+if len(selected) >= 5:
+
+    latest_vib = selected[
+    "Vibration (mm/s)"
+    ].iloc[-1]
+
+    old_vib = selected[
+    "Vibration (mm/s)"
+    ].iloc[-5]
+
+    increase = latest_vib-old_vib
+
+
+    if increase > 2:
+
+        st.error(
+        "Rapid vibration increase detected. Possible bearing failure risk within 7–10 days."
+        )
+
+    elif increase > 1:
+
+        st.warning(
+        "Abnormal vibration trend detected. Inspection recommended."
+        )
+
+    else:
+
+        st.success(
+        "Vibration trend stable."
+        )
+
+else:
+
+    st.info(
+    "Not enough historical data for prediction."
+    )
 st.subheader('Equipment Details')
 
 c1,c2,c3=st.columns(3)
