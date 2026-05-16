@@ -21,12 +21,12 @@ limits = pd.read_excel(
 )
 
 # Remove accidental spaces
+
 df["Equipment"] =
 df["Equipment"] .astype(str).str.strip()
-limits["Equipment"] = (
-    limits["Equipment"]
-    .astype(str)
-    .str.strip(
+
+limits["Equipment"] = 
+limits["Equipment"].astype(str).str.strip(
 )
 df = df.dropna()
 
