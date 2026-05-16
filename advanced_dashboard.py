@@ -64,9 +64,10 @@ equipment=st.selectbox(
     sorted(df['Equipment'].unique())
 )
 
-selected=df[
-    df['Equipment'] == equipment
+limit = limits[
+limits["Equipment"] == equipment
 ]
+
 if len(limit) > 0:
     max_temp = float(
         limit["MaxTemp"].values[0]
