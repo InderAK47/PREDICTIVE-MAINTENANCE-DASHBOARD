@@ -65,7 +65,6 @@ equipment=st.selectbox(
 # Get equipment limits
 
 df.columns = df.columns.str.strip()
-
 limits.columns = 
 limits.columns.str.strip()
 
@@ -92,6 +91,26 @@ else:
     max_temp = 80
 
     max_vibration = 5
+    temp = latest["Temperature(°C)"]
+
+vib = latest["Vibration (mm/s)"]
+
+temp_score = 100 - (
+    (temp/max_temp)*50
+)
+
+vib_score = 100 - (
+    (vib/max_vibration)*50
+)
+
+health = round(
+    (temp_score+vib_score)/2
+)
+
+health=max(
+    0,
+    min(100,health)
+)
 
 latest=selected.iloc[-1]
 # Sort by date
