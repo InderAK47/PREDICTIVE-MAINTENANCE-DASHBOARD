@@ -61,13 +61,14 @@ st.divider()
 
 equipment=st.selectbox(
     'Select Equipment',
-    sorted(df['Equipment '].unique())
+    sorted(df['Equipment'].unique())
 )
 
 # Get equipment limits
-
+df.columns = df.columns.str.strip()
+limits.columns = limits.columns.str.strip()
 limit = limits[
-    limits["Equipment "] == equipment
+    limits["Equipment"] == equipment
 ]
 
 if len(limit) > 0:
